@@ -13,8 +13,8 @@
   DTS:ObjectName="Package"
   DTS:PackageType="5"
   DTS:TransactionOption="0"
-  DTS:VersionBuild="59"
-  DTS:VersionGUID="{9C23024A-B4B9-4852-99D2-320486181618}">
+  DTS:VersionBuild="61"
+  DTS:VersionGUID="{6BB7431C-910F-4B07-8A80-92115DC1043C}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -8097,7 +8097,6 @@
       DTS:refId="Package\postcode"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:Disabled="True"
       DTS:DTSID="{CFB5D1D3-25DF-4031-A279-CBC724C9E513}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -8730,7 +8729,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate accidents"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="3">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -8764,7 +8763,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate PCD"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="2">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -8776,13 +8775,12 @@
       DTS:refId="Package\Truncate postcodes"
       DTS:CreationName="Microsoft.ExecuteSQLTask"
       DTS:Description="Execute SQL Task"
-      DTS:Disabled="True"
       DTS:DTSID="{FF4556AD-A948-4D3B-8D7F-21C8CAF14003}"
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate postcodes"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="2">
+      DTS:ThreadHint="3">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -9776,13 +9774,17 @@
           Id="Package\LSOA_PCD"
           TopLeft="663.571439871983,273.294121143315" />
         <NodeLayout
+          Size="128,41.6"
+          Id="Package\Merge join"
+          TopLeft="656.428582607484,355.847062759499" />
+        <NodeLayout
           Size="134.4,41.6"
           Id="Package\PCD_PCDfix"
           TopLeft="659.285725513284,196.529414520957" />
         <NodeLayout
           Size="120.8,41.6"
           Id="Package\postcode"
-          TopLeft="83.5714299946418,199.588238093267" />
+          TopLeft="75.0000012772427,198.058826307112" />
         <NodeLayout
           Size="167.2,41.6"
           Id="Package\Truncate accidents"
@@ -9798,7 +9800,7 @@
         <NodeLayout
           Size="170.4,41.6"
           Id="Package\Truncate postcodes"
-          TopLeft="59.2857152953442,104.000001458561" />
+          TopLeft="50.7142865779451,102.470589672406" />
         <NodeLayout
           Size="160.8,41.6"
           Id="Package\Truncate vehicles"
@@ -9809,7 +9811,7 @@
           TopLeft="74.2571433315473,360.941181532652" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="144.228572644993,145.600001458561">
+          TopLeft="135.657143927594,144.070589672406">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -9939,10 +9941,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="128,41.6"
-          Id="Package\Merge join"
-          TopLeft="656.428582607484,355.847062759499" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
           TopLeft="724.200011239734,314.894121143315">
@@ -10166,6 +10164,201 @@
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
+    design-time-name="Package\Merge join">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="106.4,41.6"
+          Id="Package\Merge join\Sort 1"
+          TopLeft="425,121.666666666667" />
+        <NodeLayout
+          Size="115.2,41.6"
+          Id="Package\Merge join\PCD_fix"
+          TopLeft="416.833333333333,43.0000000000001" />
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\Merge join\Merge Join"
+          TopLeft="275,207.5" />
+        <NodeLayout
+          Size="128.8,41.6"
+          Id="Package\Merge join\LSOA_PCD"
+          TopLeft="280.833333333333,291.666666666667" />
+        <NodeLayout
+          Size="103.2,41.6"
+          Id="Package\Merge join\LSOA"
+          TopLeft="164,37.8333333333334" />
+        <NodeLayout
+          Size="97.6,41.6"
+          Id="Package\Merge join\Sort"
+          TopLeft="165,122.5" />
+        <EdgeLayout
+          Id="Package\Merge join.Paths[Sort Output]"
+          TopLeft="213.8,164.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="105.733333333333,43.3999999999999"
+              Start="0,0"
+              End="105.733333333333,35.8999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.7224390243902" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.7224390243902"
+                    Point2="0,25.7224390243902"
+                    Point3="4,25.7224390243902" />
+                  <mssgle:LineSegment
+                    End="101.733333333333,25.7224390243902" />
+                  <mssgle:CubicBezierSegment
+                    Point1="101.733333333333,25.7224390243902"
+                    Point2="105.733333333333,25.7224390243902"
+                    Point3="105.733333333333,29.7224390243902" />
+                  <mssgle:LineSegment
+                    End="105.733333333333,35.8999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge join.Paths[OLE DB Source Output1]"
+          TopLeft="476.316666666667,84.6000000000002">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,37.0666666666666"
+              Start="0,0"
+              End="0,29.5666666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5666666666666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge join.Paths[OLE DB Source Output]"
+          TopLeft="214.7,79.4333333333334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.0666666666667"
+              Start="0,0"
+              End="0,35.5666666666667">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5666666666667" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge join.Paths[Merge Join Output]"
+          TopLeft="342.516666666667,249.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.5666666666666"
+              Start="0,0"
+              End="0,35.0666666666666">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.0666666666666" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Merge join.Paths[Sort Output1]"
+          TopLeft="478.2,163.266666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-118.133333333333,44.2333333333331"
+              Start="0,0"
+              End="-118.133333333333,36.7333333333331">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.2163414634145" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,22.2163414634145"
+                    Point2="0,26.2163414634145"
+                    Point3="-4,26.2163414634145" />
+                  <mssgle:LineSegment
+                    End="-114.133333333333,26.2163414634145" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-114.133333333333,26.2163414634145"
+                    Point2="-118.133333333333,26.2163414634145"
+                    Point3="-118.133333333333,30.2163414634145" />
+                  <mssgle:LineSegment
+                    End="-118.133333333333,36.7333333333331" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Merge join\PCD_fix">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Merge join\LSOA_PCD">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Merge join\LSOA">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
     design-time-name="Package\PCD_PCDfix">
     <LayoutInfo>
       <GraphLayout
@@ -10173,37 +10366,25 @@
         <NodeLayout
           Size="130.4,41.6"
           Id="Package\PCD_PCDfix\Stage_PCD"
-          TopLeft="144.285714285714,177.857142857143" />
+          TopLeft="160.714285994062,178.621848750221" />
         <NodeLayout
           Size="118.4,69.6"
           Id="Package\PCD_PCDfix\Src_PCD"
           TopLeft="165.064936962553,38.1948070180059" />
         <EdgeLayout
           Id="Package\PCD_PCDfix.Paths[Flat File Source Output]"
-          TopLeft="224.264936962553,107.794807018006">
+          TopLeft="225.089611478308,107.794807018006">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-14.7792226768383,70.062335839137"
+              EndConnector="0,70.8270417322148"
               Start="0,0"
-              End="-14.7792226768383,62.562335839137">
+              End="0,63.3270417322148">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.0311679195685" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,31.0311679195685"
-                    Point2="0,35.0311679195685"
-                    Point3="-4,35.0311679195685" />
-                  <mssgle:LineSegment
-                    End="-10.7792226768383,35.0311679195685" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-10.7792226768383,35.0311679195685"
-                    Point2="-14.7792226768383,35.0311679195685"
-                    Point3="-14.7792226768383,39.0311679195685" />
-                  <mssgle:LineSegment
-                    End="-14.7792226768383,62.562335839137" />
+                    End="0,63.3270417322148" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -10321,201 +10502,6 @@
   </TaskHost>
   <PipelineComponentMetadata
     design-time-name="Package\vehicles\Stage_vehicles">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Merge join">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
-        <NodeLayout
-          Size="103.2,41.6"
-          Id="Package\Merge join\LSOA"
-          TopLeft="164,37.8333333333334" />
-        <NodeLayout
-          Size="115.2,41.6"
-          Id="Package\Merge join\PCD_fix"
-          TopLeft="416.833333333333,43.0000000000001" />
-        <NodeLayout
-          Size="97.6,41.6"
-          Id="Package\Merge join\Sort"
-          TopLeft="165,122.5" />
-        <NodeLayout
-          Size="106.4,41.6"
-          Id="Package\Merge join\Sort 1"
-          TopLeft="425,121.666666666667" />
-        <EdgeLayout
-          Id="Package\Merge join.Paths[OLE DB Source Output]"
-          TopLeft="214.7,79.4333333333334">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,43.0666666666667"
-              Start="0,0"
-              End="0,35.5666666666667">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.5666666666667" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Merge join.Paths[OLE DB Source Output1]"
-          TopLeft="476.316666666667,84.6000000000002">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,37.0666666666666"
-              Start="0,0"
-              End="0,29.5666666666666">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,29.5666666666666" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="129.6,41.6"
-          Id="Package\Merge join\Merge Join"
-          TopLeft="275,207.5" />
-        <EdgeLayout
-          Id="Package\Merge join.Paths[Sort Output]"
-          TopLeft="213.8,164.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="105.733333333333,43.3999999999999"
-              Start="0,0"
-              End="105.733333333333,35.8999999999999">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,21.7224390243902" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.7224390243902"
-                    Point2="0,25.7224390243902"
-                    Point3="4,25.7224390243902" />
-                  <mssgle:LineSegment
-                    End="101.733333333333,25.7224390243902" />
-                  <mssgle:CubicBezierSegment
-                    Point1="101.733333333333,25.7224390243902"
-                    Point2="105.733333333333,25.7224390243902"
-                    Point3="105.733333333333,29.7224390243902" />
-                  <mssgle:LineSegment
-                    End="105.733333333333,35.8999999999999" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Merge join.Paths[Sort Output1]"
-          TopLeft="478.2,163.266666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-118.133333333333,44.2333333333331"
-              Start="0,0"
-              End="-118.133333333333,36.7333333333331">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,22.2163414634145" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,22.2163414634145"
-                    Point2="0,26.2163414634145"
-                    Point3="-4,26.2163414634145" />
-                  <mssgle:LineSegment
-                    End="-114.133333333333,26.2163414634145" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-114.133333333333,26.2163414634145"
-                    Point2="-118.133333333333,26.2163414634145"
-                    Point3="-118.133333333333,30.2163414634145" />
-                  <mssgle:LineSegment
-                    End="-118.133333333333,36.7333333333331" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="128.8,41.6"
-          Id="Package\Merge join\LSOA_PCD"
-          TopLeft="280.833333333333,291.666666666667" />
-        <EdgeLayout
-          Id="Package\Merge join.Paths[Merge Join Output]"
-          TopLeft="342.516666666667,249.1">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,42.5666666666666"
-              Start="0,0"
-              End="0,35.0666666666666">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,35.0666666666666" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
-  <PipelineComponentMetadata
-    design-time-name="Package\Merge join\LSOA">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Merge join\PCD_fix">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Merge join\LSOA_PCD">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
