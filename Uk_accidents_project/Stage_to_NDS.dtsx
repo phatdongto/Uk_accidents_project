@@ -11,8 +11,8 @@
   DTS:LocaleID="1066"
   DTS:ObjectName="Stage_to_NDS"
   DTS:PackageType="5"
-  DTS:VersionBuild="41"
-  DTS:VersionGUID="{C6764684-2F62-4A2C-A42F-A2ACF63BCE18}">
+  DTS:VersionBuild="55"
+  DTS:VersionGUID="{47727DF8-E109-4387-A72C-5234E0699D23}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -1348,6 +1348,412 @@ where Accident_Index=?</property>
                       refId="Package\Insert to Accidents in NDS\Add update_date and create_date.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Insert to Accidents in NDS\Add update_date and create_date.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Change blank into NULL and substring"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Inputs[Derived Column Input].Columns[LSOA_of_Accident_Location]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LSOA_of_Accident_Location"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[LSOA_of_Accident_Location]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[LSOA_of_Accident_Location]} == "" ? NULL(DT_WSTR,50) : #{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[LSOA_of_Accident_Location]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">LSOA_of_Accident_Location == "" ? NULL(DT_WSTR,50) : LSOA_of_Accident_Location</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Inputs[Derived Column Input].Columns[pcd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="pcd"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[pcd]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[pcd]} == "" ? NULL(DT_WSTR,50) : #{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[pcd]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">pcd == "" ? NULL(DT_WSTR,50) : pcd</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Inputs[Derived Column Input].Columns[Date]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]},1,2) + "/" + [SUBSTRING](#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]},4,2) + "/" + [SUBSTRING](#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]},7,4)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(Date,1,2) + "/" + SUBSTRING(Date,4,2) + "/" + SUBSTRING(Date,7,4)</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Change blank into NULL and substring 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Inputs[Derived Column Input].Columns[LSOA_of_Accident_Location]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="LSOA_of_Accident_Location"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[LSOA_of_Accident_Location]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[LSOA_of_Accident_Location]} == "" ? NULL(DT_WSTR,50) : #{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[LSOA_of_Accident_Location]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">LSOA_of_Accident_Location == "" ? NULL(DT_WSTR,50) : LSOA_of_Accident_Location</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Inputs[Derived Column Input].Columns[pcd]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="pcd"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[pcd]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[pcd]} == "" ? NULL(DT_WSTR,50) : #{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[pcd]}</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">pcd == "" ? NULL(DT_WSTR,50) : pcd</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Inputs[Derived Column Input].Columns[Date]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Date"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]"
+                      truncationRowDisposition="FailComponent"
+                      usageType="readWrite">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">[SUBSTRING](#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]},7,4) + "/" + [SUBSTRING](#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]},4,2) + "/" + [SUBSTRING](#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]},1,2)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">SUBSTRING(Date,7,4) + "/" + SUBSTRING(Date,4,2) + "/" + SUBSTRING(Date,1,2)</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Inputs[Derived Column Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert to Accidents in NDS\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Insert to Accidents in NDS\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert to Accidents in NDS\Data Conversion.Inputs[Data Conversion Input].Columns[Date]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Date"
+                      lineageId="Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert to Accidents in NDS\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Insert to Accidents in NDS\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert to Accidents in NDS\Data Conversion.Outputs[Data Conversion Output].Columns[Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert to Accidents in NDS\Data Conversion.Outputs[Data Conversion Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert to Accidents in NDS\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Insert to Accidents in NDS\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert to Accidents in NDS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert to Accidents in NDS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert to Accidents in NDS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert to Accidents in NDS\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Insert to Accidents in NDS\Data Conversion 1"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Insert to Accidents in NDS\Data Conversion 1.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert to Accidents in NDS\Data Conversion 1.Inputs[Data Conversion Input].Columns[Date]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Date"
+                      lineageId="Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert to Accidents in NDS\Data Conversion 1.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\Insert to Accidents in NDS\Data Conversion 1.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert to Accidents in NDS\Data Conversion 1.Outputs[Data Conversion Output].Columns[Date]"
+                      dataType="date"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Insert to Accidents in NDS\Data Conversion 1.Outputs[Data Conversion Output].Columns[Date]"
+                      name="Date"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\Insert to Accidents in NDS\Sort.Outputs[Sort Output].Columns[Date]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert to Accidents in NDS\Data Conversion 1.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\Insert to Accidents in NDS\Data Conversion 1.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert to Accidents in NDS\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert to Accidents in NDS\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert to Accidents in NDS\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert to Accidents in NDS\Data Conversion 1.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -4179,55 +4585,75 @@ where Accident_Index=?</property>
           </components>
           <paths>
             <path
-              refId="Package\Insert to Accidents in NDS.Paths[Derived Column Output]"
+              refId="Package\Insert to Accidents in NDS.Paths[Data Conversion Output1]"
               endId="Package\Insert to Accidents in NDS\Insert data.Inputs[OLE DB Destination Input]"
+              name="Data Conversion Output"
+              startId="Package\Insert to Accidents in NDS\Data Conversion 1.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Insert to Accidents in NDS.Paths[Data Conversion Output]"
+              endId="Package\Insert to Accidents in NDS\Update PCD.Inputs[OLE DB Command Input]"
+              name="Data Conversion Output"
+              startId="Package\Insert to Accidents in NDS\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\Insert to Accidents in NDS.Paths[Derived Column Output2]"
+              endId="Package\Insert to Accidents in NDS\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Insert to Accidents in NDS.Paths[Derived Column Output1]"
+              endId="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1.Inputs[Derived Column Input]"
+              name="Derived Column Output"
+              startId="Package\Insert to Accidents in NDS\Add update_date.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\Insert to Accidents in NDS.Paths[Derived Column Output]"
+              endId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Inputs[Derived Column Input]"
               name="Derived Column Output"
               startId="Package\Insert to Accidents in NDS\Add update_date and create_date.Outputs[Derived Column Output]" />
             <path
-              refId="Package\Insert to Accidents in NDS.Paths[Derived Column Output1]"
-              endId="Package\Insert to Accidents in NDS\Update PCD.Inputs[OLE DB Command Input]"
+              refId="Package\Insert to Accidents in NDS.Paths[Derived Column Output3]"
+              endId="Package\Insert to Accidents in NDS\Data Conversion 1.Inputs[Data Conversion Input]"
               name="Derived Column Output"
-              startId="Package\Insert to Accidents in NDS\Add update_date.Outputs[Derived Column Output]" />
+              startId="Package\Insert to Accidents in NDS\Change blank into NULL and substring.Outputs[Derived Column Output]" />
             <path
               refId="Package\Insert to Accidents in NDS.Paths[Lookup Error Output]"
               endId="Package\Insert to Accidents in NDS\Add update_date and create_date.Inputs[Derived Column Input]"
               name="Lookup Error Output"
               startId="Package\Insert to Accidents in NDS\Look for if the row is exist in Accidents.Outputs[Lookup Error Output]" />
             <path
-              refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output]"
-              endId="Package\Insert to Accidents in NDS\Look for Accident_Severity.Inputs[Lookup Input]"
+              refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output6]"
+              endId="Package\Insert to Accidents in NDS\Add update_date.Inputs[Derived Column Input]"
               name="Lookup Match Output"
-              startId="Package\Insert to Accidents in NDS\Look for Road_Type.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output1]"
-              endId="Package\Insert to Accidents in NDS\Look for Day_Of_Week.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Insert to Accidents in NDS\Look for Accident_Severity.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output2]"
-              endId="Package\Insert to Accidents in NDS\Look for District.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Insert to Accidents in NDS\Look for Day_Of_Week.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output3]"
-              endId="Package\Insert to Accidents in NDS\Look for Highway.Inputs[Lookup Input]"
-              name="Lookup Match Output"
-              startId="Package\Insert to Accidents in NDS\Look for District.Outputs[Lookup Match Output]" />
+              startId="Package\Insert to Accidents in NDS\Look for if the row is exist in Accidents.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output4]"
               endId="Package\Insert to Accidents in NDS\Look for Urban Rural.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Insert to Accidents in NDS\Look for Highway.Outputs[Lookup Match Output]" />
             <path
+              refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output3]"
+              endId="Package\Insert to Accidents in NDS\Look for Highway.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Insert to Accidents in NDS\Look for District.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output2]"
+              endId="Package\Insert to Accidents in NDS\Look for District.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Insert to Accidents in NDS\Look for Day_Of_Week.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output1]"
+              endId="Package\Insert to Accidents in NDS\Look for Day_Of_Week.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Insert to Accidents in NDS\Look for Accident_Severity.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output]"
+              endId="Package\Insert to Accidents in NDS\Look for Accident_Severity.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Insert to Accidents in NDS\Look for Road_Type.Outputs[Lookup Match Output]" />
+            <path
               refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output5]"
               endId="Package\Insert to Accidents in NDS\Look for PostCodes.Inputs[Lookup Input]"
               name="Lookup Match Output"
               startId="Package\Insert to Accidents in NDS\Look for Urban Rural.Outputs[Lookup Match Output]" />
-            <path
-              refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output6]"
-              endId="Package\Insert to Accidents in NDS\Add update_date.Inputs[Derived Column Input]"
-              name="Lookup Match Output"
-              startId="Package\Insert to Accidents in NDS\Look for if the row is exist in Accidents.Outputs[Lookup Match Output]" />
             <path
               refId="Package\Insert to Accidents in NDS.Paths[Lookup Match Output7]"
               endId="Package\Insert to Accidents in NDS\Look for if the row is exist in Accidents.Inputs[Lookup Input]"
@@ -7562,6 +7988,275 @@ where pcd8=?</property>
               </outputs>
             </component>
             <component
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate"
+              componentClassID="Microsoft.Aggregate"
+              contactInfo="Aggregate;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Aggregates data with functions such as Average, Sum, Count, Max, and Min. For example, group data to compute the sum of sales per product or the average visits per day."
+              name="Aggregate"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                  name="KeyScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                  name="Keys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the approximate number of distinct values in a column that the aggregation counts distinctly. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no CountDistinctScale value is used."
+                  name="CountDistinctScale"
+                  typeConverter="KeyScaleType">0</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the exact number of distinct values in a column that the aggregation counts distinctly. If a CountDistinctScale value is specified, the value in CountDistinctKeys takes precedence."
+                  name="CountDistinctKeys" />
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage by which memory can be extended during the aggregation. Valid values are between 1 and 100."
+                  name="AutoExtendFactor">25</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate.Inputs[Aggregate Input 1]"
+                  name="Aggregate Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate.Inputs[Aggregate Input 1].Columns[pcd8_fix]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="pcd8_fix"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort.Outputs[Sort Output].Columns[pcd8_fix]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate.Outputs[Aggregate Output 1]"
+                  name="Aggregate Output 1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the approximate number of group by keys that the aggregation produces. Low indicates 500,000 key values, Medium indicates 5 million key values, and High indicates more than 25 million key values. Unspecified indicates no KeyScale value is used."
+                      name="KeyScale"
+                      typeConverter="KeyScaleType">0</property>
+                    <property
+                      dataType="System.Null"
+                      description="Specifies the exact number of group by keys that the aggregation produces. If a KeyScale value is specified, the value in Keys takes precedence."
+                      name="Keys" />
+                  </properties>
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate.Outputs[Aggregate Output 1].Columns[pcd8_fix]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate.Outputs[Aggregate Output 1].Columns[pcd8_fix]"
+                      name="pcd8_fix">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the ID of the input column used in the aggregation."
+                          name="AggregationColumnId">#{Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort.Outputs[Sort Output].Columns[pcd8_fix]}</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the type of aggregation."
+                          name="AggregationType"
+                          typeConverter="AggregationType">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Indicates whether the column requires special handling because it may contain oversized data or it requires precision beyond a float data type."
+                          name="IsBig">1</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the string comparison options."
+                          name="AggregationComparisonFlags">0</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Postcodes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].Columns[pcd8_fix]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="pcd8_fix"
+                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[postcode]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate.Outputs[Aggregate Output 1].Columns[pcd8_fix]" />
+                    <inputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].Columns[Create date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Create date"
+                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NgayTao]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Outputs[Derived Column Output].Columns[Create date]" />
+                    <inputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].Columns[Update date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Update date"
+                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NgayCapNhat]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Outputs[Derived Column Output].Columns[Update date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[postcode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="postcode" />
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[latitude]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="latitude" />
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[longitude]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="longitude" />
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[city]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="city" />
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[county]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="county" />
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[country]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="country" />
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[region]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="region" />
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NgayTao]"
+                      dataType="dbTimeStamp"
+                      name="NgayTao" />
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[NgayCapNhat]"
+                      dataType="dbTimeStamp"
+                      name="NgayCapNhat" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (Accident)"
               componentClassID="Microsoft.OLEDBCommand"
               contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
@@ -7697,146 +8392,11 @@ where pcd8=?</property>
               </outputs>
             </component>
             <component
-              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD)"
-              componentClassID="Microsoft.OLEDBCommand"
-              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="Insert Postcodes (PCD)"
-              usesDispositions="true"
-              validateExternalMetadata="False"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">INSERT [dbo].[Postcodes] ([postcode],[NgayTao],[NgayCapNhat]) VALUES (?,?,?)</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
-                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input]"
-                  errorOrTruncationOperation="Command Execution"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Command Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input].Columns[pcd8_fix]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="pcd8_fix"
-                      cachedSortKeyPosition="1"
-                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output].Columns[pcd8_fix]" />
-                    <inputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input].Columns[Create date]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Create date"
-                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Outputs[Derived Column Output].Columns[Create date]" />
-                    <inputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input].Columns[Update date]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="Update date"
-                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Outputs[Derived Column Output].Columns[Update date]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      name="Param_0">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      dataType="dbTimeStamp"
-                      name="Param_1">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      dataType="dbTimeStamp"
-                      name="Param_2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Outputs[OLE DB Command Output]"
-                  exclusionGroup="1"
-                  name="OLE DB Command Output"
-                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Outputs[OLE DB Command Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Command Error Output"
-                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes"
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Look pcd postcode in postcodes"
+              name="Look pcd postcode in Postcodes"
               usesDispositions="true"
               validateExternalMetadata="False"
               version="6">
@@ -7901,7 +8461,7 @@ where [refTable].[postcode] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Connections[OleDbConnection]"
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
                   connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
                   description="Connection manager used to access lookup data."
@@ -7909,11 +8469,11 @@ where [refTable].[postcode] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Inputs[Lookup Input]"
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Inputs[Lookup Input].Columns[pcd]"
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Inputs[Lookup Input].Columns[pcd]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
@@ -7937,39 +8497,57 @@ where [refTable].[postcode] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup Match Output]"
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   errorRowDisposition="RedirectRow"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Inputs[Lookup Input]">
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Match Output].Columns[postcode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Match Output].Columns[postcode]"
+                      name="postcode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">postcode</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup No Match Output]"
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Inputs[Lookup Input]">
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup Error Output]"
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Inputs[Lookup Input]">
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -7978,11 +8556,11 @@ where [refTable].[postcode] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes"
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
-              name="Look pcd8_pcd postcode in postcodes"
+              name="Look pcd8_pcd postcode in Postcodes"
               usesDispositions="true"
               validateExternalMetadata="False"
               version="6">
@@ -8047,7 +8625,7 @@ where [refTable].[postcode] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Connections[OleDbConnection]"
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Connections[OleDbConnection]"
                   connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
                   connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
                   description="Connection manager used to access lookup data."
@@ -8055,11 +8633,11 @@ where [refTable].[postcode] = ?</property>
               </connections>
               <inputs>
                 <input
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Inputs[Lookup Input]"
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Inputs[Lookup Input].Columns[pcd8_fix]"
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Inputs[Lookup Input].Columns[pcd8_fix]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
@@ -8082,39 +8660,190 @@ where [refTable].[postcode] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup Match Output]"
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   errorRowDisposition="RedirectRow"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Inputs[Lookup Input]">
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Outputs[Lookup Match Output].Columns[postcode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="50"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Outputs[Lookup Match Output].Columns[postcode]"
+                      name="postcode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">postcode</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup No Match Output]"
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Inputs[Lookup Input]">
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup Error Output]"
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Inputs[Lookup Input]">
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[Postcodes] SET [NgayCapNhat] = ?,[NgayTao] = ? WHERE [postcode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input].Columns[Update date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Update date"
+                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Outputs[Derived Column Output].Columns[Update date]" />
+                    <inputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input].Columns[Create date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Create date"
+                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Outputs[Derived Column Output].Columns[Create date]" />
+                    <inputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input].Columns[pcd8_fix]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="pcd8_fix"
+                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate.Outputs[Aggregate Output 1].Columns[pcd8_fix]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="dbTimeStamp"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="dbTimeStamp"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -8422,7 +9151,7 @@ where [refTable].[postcode] = ?</property>
                       refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd.Inputs[Sort Input].Columns[ErrorCode]"
                       cachedDataType="i4"
                       cachedName="ErrorCode"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]">
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -8438,7 +9167,7 @@ where [refTable].[postcode] = ?</property>
                       refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd.Inputs[Sort Input].Columns[ErrorColumn]"
                       cachedDataType="i4"
                       cachedName="ErrorColumn"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]">
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]">
                       <properties>
                         <property
                           dataType="System.Int32"
@@ -8695,7 +9424,7 @@ where [refTable].[postcode] = ?</property>
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]}</property>
+                          name="SortColumnId">#{Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]}</property>
                       </properties>
                     </outputColumn>
                     <outputColumn
@@ -8708,7 +9437,7 @@ where [refTable].[postcode] = ?</property>
                           containsID="true"
                           dataType="System.Int32"
                           description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]}</property>
+                          name="SortColumnId">#{Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]}</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -8717,198 +9446,173 @@ where [refTable].[postcode] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix"
-              componentClassID="Microsoft.Sort"
-              contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
-              description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
-              name="Remove duplicate pcd8_fix"
-              version="1">
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="Slowly Changing Dimension"
+              version="3">
               <properties>
                 <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [NgayCapNhat], [NgayTao], [postcode] FROM [dbo].[Postcodes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere"></property>
+                <property
                   dataType="System.Boolean"
-                  description="Indicates whether the Sort transformation removes rows with duplicate sort values."
-                  name="EliminateDuplicates">true</property>
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
                 <property
                   dataType="System.Int32"
-                  description="Specifies the maximum number of threads to use for sorting."
-                  expressionType="Notify"
-                  name="MaximumThreads">-1</property>
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1258</property>
               </properties>
+              <connections>
+                <connection
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Connections[LookupConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.NDS]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.NDS]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
               <inputs>
                 <input
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Inputs[Sort Input]"
-                  name="Sort Input">
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Inputs[Sort Input].Columns[pcd8]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="pcd8"
-                      cachedSortKeyPosition="1"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort.Outputs[Sort Output].Columns[pcd8]">
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Update date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Update date"
+                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NgayCapNhat]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Outputs[Derived Column Output].Columns[Update date]">
                       <properties>
                         <property
                           dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
                       </properties>
                     </inputColumn>
                     <inputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Inputs[Sort Input].Columns[pcd8_fix]"
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[Create date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Create date"
+                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NgayTao]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Outputs[Derived Column Output].Columns[Create date]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">2</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].Columns[pcd8_fix]"
                       cachedCodepage="1252"
                       cachedDataType="str"
                       cachedLength="50"
                       cachedName="pcd8_fix"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort.Outputs[Sort Output].Columns[pcd8_fix]">
+                      externalMetadataColumnId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[postcode]"
+                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate.Outputs[Aggregate Output 1].Columns[pcd8_fix]">
                       <properties>
                         <property
                           dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">1</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Inputs[Sort Input].Columns[lsoa11cd]"
-                      cachedCodepage="1252"
-                      cachedDataType="str"
-                      cachedLength="50"
-                      cachedName="lsoa11cd"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort.Outputs[Sort Output].Columns[lsoa11cd]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Inputs[Sort Input].Columns[ErrorCode]"
-                      cachedDataType="i4"
-                      cachedName="ErrorCode"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
-                      </properties>
-                    </inputColumn>
-                    <inputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Inputs[Sort Input].Columns[ErrorColumn]"
-                      cachedDataType="i4"
-                      cachedName="ErrorColumn"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the comparison options for character data."
-                          name="NewComparisonFlags">0</property>
-                        <property
-                          dataType="System.Int32"
-                          description="Specifies the sort order of the column."
-                          name="NewSortKeyPosition">0</property>
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
                       </properties>
                     </inputColumn>
                   </inputColumns>
-                  <externalMetadataColumns />
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NgayCapNhat]"
+                      dataType="dbTimeStamp"
+                      name="NgayCapNhat" />
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[NgayTao]"
+                      dataType="dbTimeStamp"
+                      name="NgayTao" />
+                    <externalMetadataColumn
+                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input].ExternalColumns[postcode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="postcode" />
+                  </externalMetadataColumns>
                 </input>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output]"
-                  isSorted="true"
-                  name="Sort Output">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output].Columns[pcd8]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output].Columns[pcd8]"
-                      name="pcd8">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort.Outputs[Sort Output].Columns[pcd8]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output].Columns[pcd8_fix]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output].Columns[pcd8_fix]"
-                      name="pcd8_fix"
-                      sortKeyPosition="1">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort.Outputs[Sort Output].Columns[pcd8_fix]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output].Columns[lsoa11cd]"
-                      codePage="1252"
-                      dataType="str"
-                      length="50"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output].Columns[lsoa11cd]"
-                      name="lsoa11cd">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort.Outputs[Sort Output].Columns[lsoa11cd]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output].Columns[ErrorCode]"
-                      name="ErrorCode">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorCode]}</property>
-                      </properties>
-                    </outputColumn>
-                    <outputColumn
-                      refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output].Columns[ErrorColumn]"
-                      name="ErrorColumn">
-                      <properties>
-                        <property
-                          containsID="true"
-                          dataType="System.Int32"
-                          description="Specifies the lineage identifier of the input column that is associated with this output column."
-                          name="SortColumnId">#{Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup Error Output].Columns[ErrorColumn]}</property>
-                      </properties>
-                    </outputColumn>
-                  </outputColumns>
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]">
                   <externalMetadataColumns />
                 </output>
               </outputs>
@@ -10173,25 +10877,40 @@ where [refTable].[postcode] = ?</property>
           </components>
           <paths>
             <path
-              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Derived Column Output]"
-              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD).Inputs[OLE DB Command Input]"
-              name="Derived Column Output"
-              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Outputs[Derived Column Output]" />
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Aggregate Output 1]"
+              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Inputs[Derived Column Input]"
+              name="Aggregate Output 1"
+              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate.Outputs[Aggregate Output 1]" />
             <path
-              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Derived Column Output1]"
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Changing Attribute Updates Output]"
+              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Changing Attribute Updates Output"
+              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Outputs[Changing Attribute Updates Output]" />
+            <path
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Derived Column Output]"
               endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (Accident).Inputs[OLE DB Command Input]"
               name="Derived Column Output"
               startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1 1.Outputs[Derived Column Output]" />
             <path
-              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Lookup Error Output]"
-              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Inputs[Sort Input]"
-              name="Lookup Error Output"
-              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Outputs[Lookup Error Output]" />
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Derived Column Output1]"
+              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Inputs[Slowly Changing Dimension Input]"
+              name="Derived Column Output"
+              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Outputs[Derived Column Output]" />
             <path
-              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Lookup Error Output1]"
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Lookup Error Output]"
               endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd.Inputs[Sort Input]"
               name="Lookup Error Output"
-              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Outputs[Lookup Error Output]" />
+              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Outputs[Lookup Error Output]" />
+            <path
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Lookup Error Output1]"
+              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate.Inputs[Aggregate Input 1]"
+              name="Lookup Error Output"
+              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Outputs[Lookup Error Output]" />
+            <path
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[New Output]"
+              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="New Output"
+              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension.Outputs[New Output]" />
             <path
               refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[OLE DB Source Output]"
               endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort.Inputs[Sort Input]"
@@ -10204,24 +10923,19 @@ where [refTable].[postcode] = ?</property>
               startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Stage_Accidents.Outputs[OLE DB Source Output]" />
             <path
               refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output]"
-              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes.Inputs[Lookup Input]"
-              name="Sort Output"
-              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort.Outputs[Sort Output]" />
-            <path
-              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output1]"
-              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1.Inputs[Derived Column Input]"
-              name="Sort Output"
-              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix.Outputs[Sort Output]" />
-            <path
-              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output2]"
-              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes.Inputs[Lookup Input]"
+              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes.Inputs[Lookup Input]"
               name="Sort Output"
               startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort 1.Outputs[Sort Output]" />
             <path
-              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output3]"
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output1]"
               endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1 1.Inputs[Derived Column Input]"
               name="Sort Output"
               startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd.Outputs[Sort Output]" />
+            <path
+              refId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output2]"
+              endId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes.Inputs[Lookup Input]"
+              name="Sort Output"
+              startId="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort.Outputs[Sort Output]" />
           </paths>
         </pipeline>
       </DTS:ObjectData>
@@ -13545,14 +14259,14 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,28.7529421631443"
+              EndConnector="0,28.752942163144"
               Start="0,0"
-              End="0,21.2529421631443">
+              End="0,21.252942163144">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.2529421631443" />
+                    End="0,21.252942163144" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13589,14 +14303,14 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="157.685720404313,0"
+              EndConnector="157.685720404314,0"
               Start="0,0"
-              End="150.185720404313,0">
+              End="150.185720404314,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="150.185720404313,0" />
+                    End="150.185720404314,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13611,14 +14325,14 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-28.7529421631436"
+              EndConnector="0,-28.752942163144"
               Start="0,0"
-              End="0,-21.2529421631436">
+              End="0,-21.252942163144">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-21.2529421631436" />
+                    End="0,-21.252942163144" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -13932,23 +14646,47 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
     design-time-name="Package\Insert to Accidents in NDS">
     <LayoutInfo>
       <GraphLayout
-        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="64" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\Insert to Accidents in NDS\Data Conversion"
+          TopLeft="667.428566684529,113.235292830682" />
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\Insert to Accidents in NDS\Stage_accidents"
+          TopLeft="151.857142735501,27.6176468711412" />
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\Insert to Accidents in NDS\Look for District"
+          TopLeft="149,277.2" />
+        <NodeLayout
+          Size="97.6,42.4"
+          Id="Package\Insert to Accidents in NDS\Sort"
+          TopLeft="186,112" />
+        <NodeLayout
+          Size="168.8,41.6"
+          Id="Package\Insert to Accidents in NDS\Look for PostCodes"
+          TopLeft="434,379.8" />
+        <NodeLayout
+          Size="203.2,41.6"
+          Id="Package\Insert to Accidents in NDS\Look for Accident_Severity"
+          TopLeft="378,195" />
+        <NodeLayout
+          Size="258.4,41.6"
+          Id="Package\Insert to Accidents in NDS\Change blank into NULL and substring"
+          TopLeft="912.035713996814,175.705883050047" />
         <NodeLayout
           Size="160.8,41.6"
           Id="Package\Insert to Accidents in NDS\Look for Highway"
           TopLeft="391,272.8" />
         <NodeLayout
-          Size="238.4,41.6"
-          Id="Package\Insert to Accidents in NDS\Add update_date and create_date"
-          TopLeft="907.333333333334,246.425641025641" />
-        <NodeLayout
           Size="172.8,41.6"
           Id="Package\Insert to Accidents in NDS\Look for Road_Type"
           TopLeft="389,108" />
         <NodeLayout
-          Size="135.2,41.6"
-          Id="Package\Insert to Accidents in NDS\Update PCD"
-          TopLeft="652.833333333333,125.425641025641" />
+          Size="238.4,41.6"
+          Id="Package\Insert to Accidents in NDS\Add update_date and create_date"
+          TopLeft="910.333333333334,280.425641025641" />
         <NodeLayout
           Size="187.2,41.6"
           Id="Package\Insert to Accidents in NDS\Look for Day_Of_Week"
@@ -13956,53 +14694,37 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
         <NodeLayout
           Size="130.4,41.6"
           Id="Package\Insert to Accidents in NDS\Insert data"
-          TopLeft="958.166666666667,130.925641025641" />
-        <NodeLayout
-          Size="203.2,41.6"
-          Id="Package\Insert to Accidents in NDS\Look for Accident_Severity"
-          TopLeft="378,195" />
-        <NodeLayout
-          Size="176,41.6"
-          Id="Package\Insert to Accidents in NDS\Look for Urban Rural"
-          TopLeft="155,376.8" />
-        <NodeLayout
-          Size="154.4,41.6"
-          Id="Package\Insert to Accidents in NDS\Stage_accidents"
-          TopLeft="159,41.0000000000001" />
-        <NodeLayout
-          Size="152.8,41.6"
-          Id="Package\Insert to Accidents in NDS\Look for District"
-          TopLeft="149,277.2" />
+          TopLeft="936.952380557044,38.5874055304351" />
         <NodeLayout
           Size="260.8,41.6"
           Id="Package\Insert to Accidents in NDS\Look for if the row is exist in Accidents"
           TopLeft="736.474358974358,385.4" />
         <NodeLayout
-          Size="168.8,41.6"
-          Id="Package\Insert to Accidents in NDS\Look for PostCodes"
-          TopLeft="434,379.8" />
-        <NodeLayout
           Size="159.2,41.6"
           Id="Package\Insert to Accidents in NDS\Add update_date"
-          TopLeft="644,246.758974358975" />
+          TopLeft="644,280.758974358975" />
         <NodeLayout
-          Size="97.6,42.4"
-          Id="Package\Insert to Accidents in NDS\Sort"
-          TopLeft="186,112" />
+          Size="135.2,41.6"
+          Id="Package\Insert to Accidents in NDS\Update PCD"
+          TopLeft="676.940476601018,38.0285804995638" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Insert to Accidents in NDS\Look for Urban Rural"
+          TopLeft="155,376.8" />
         <EdgeLayout
-          Id="Package\Insert to Accidents in NDS.Paths[OLE DB Source Output]"
-          TopLeft="235.5,82.6000000000001">
+          Id="Package\Insert to Accidents in NDS.Paths[Sort Output]"
+          TopLeft="283.6,131">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,29.3999999999999"
+              EndConnector="105.4,0"
               Start="0,0"
-              End="0,21.8999999999999">
+              End="97.9000000000002,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.8999999999999" />
+                    End="97.9000000000002,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14031,7 +14753,7 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="14.8957927684291,5,96.3827734375,11.609375"
+              BoundingBox="14.895792768429,5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14041,33 +14763,33 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-101.141025641025,-97.041025641025"
+              EndConnector="-101.141025641025,-63.0410256410249"
               Start="0,0"
-              End="-101.141025641025,-89.541025641025">
+              End="-101.141025641025,-55.5410256410249">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-35.1714383989991" />
+                    End="0,-21.4470481550967" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-35.1714383989991"
-                    Point2="0,-39.1714383989991"
-                    Point3="-4,-39.1714383989991" />
+                    Point1="0,-21.4470481550967"
+                    Point2="0,-25.4470481550967"
+                    Point3="-4,-25.4470481550967" />
                   <mssgle:LineSegment
-                    End="-97.1410256410247,-39.1714383989991" />
+                    End="-97.1410256410246,-25.4470481550967" />
                   <mssgle:CubicBezierSegment
-                    Point1="-97.1410256410247,-39.1714383989991"
-                    Point2="-101.141025641025,-39.1714383989991"
-                    Point3="-101.141025641025,-43.1714383989991" />
+                    Point1="-97.1410256410246,-25.4470481550967"
+                    Point2="-101.141025641025,-25.4470481550967"
+                    Point3="-101.141025641025,-29.4470481550967" />
                   <mssgle:LineSegment
-                    End="-101.141025641025,-89.541025641025" />
+                    End="-101.141025641025,-55.5410256410249" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-98.7618995392624,-34.1714383989991,96.3827734375,11.609375"
+              BoundingBox="-98.7618995392623,-20.4470481550967,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14091,7 +14813,7 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-0.441386718749918,5,96.3827734375,11.609375"
+              BoundingBox="-0.441386718749904,5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14151,7 +14873,7 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-7.34138671875004,5,96.3827734375,11.609375"
+              BoundingBox="-7.34138671875005,5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -14233,72 +14955,100 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="117.525641025643,-97.374358974359"
+              EndConnector="120.525641025642,-63.374358974359"
               Start="0,0"
-              End="117.525641025643,-89.874358974359">
+              End="120.525641025642,-55.874358974359">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-35.3059912445279" />
+                    End="0,-21.5816010006254" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,-35.3059912445279"
-                    Point2="0,-39.3059912445279"
-                    Point3="4,-39.3059912445279" />
+                    Point1="0,-21.5816010006254"
+                    Point2="0,-25.5816010006254"
+                    Point3="4,-25.5816010006254" />
                   <mssgle:LineSegment
-                    End="113.525641025643,-39.3059912445279" />
+                    End="116.525641025642,-25.5816010006254" />
                   <mssgle:CubicBezierSegment
-                    Point1="113.525641025643,-39.3059912445279"
-                    Point2="117.525641025643,-39.3059912445279"
-                    Point3="117.525641025643,-43.3059912445279" />
+                    Point1="116.525641025642,-25.5816010006254"
+                    Point2="120.525641025642,-25.5816010006254"
+                    Point3="120.525641025642,-29.5816010006254" />
                   <mssgle:LineSegment
-                    End="117.525641025643,-89.874358974359" />
+                    End="120.525641025642,-55.874358974359" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="12.8964337940713,-34.3059912445279,91.7327734375,11.609375"
+              BoundingBox="14.396433794071,-20.5816010006254,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Insert to Accidents in NDS.Paths[Derived Column Output1]"
-          TopLeft="722.016666666666,246.758974358975">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,-79.7333333333338"
-              Start="0,0"
-              End="0,-72.2333333333338">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,-72.2333333333338" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
           Id="Package\Insert to Accidents in NDS.Paths[Derived Column Output]"
-          TopLeft="1024.95,246.425641025641">
+          TopLeft="1029.53333333333,280.425641025641">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,-73.8999999999999"
+              EndConnector="11.7023806634802,-63.1197579755936"
               Start="0,0"
-              End="0,-66.3999999999999">
+              End="11.7023806634802,-55.6197579755936">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,-66.3999999999999" />
+                    End="0,-27.5598789877968" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-27.5598789877968"
+                    Point2="0,-31.5598789877968"
+                    Point3="4,-31.5598789877968" />
+                  <mssgle:LineSegment
+                    End="7.7023806634802,-31.5598789877968" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7.7023806634802,-31.5598789877968"
+                    Point2="11.7023806634802,-31.5598789877968"
+                    Point3="11.7023806634802,-35.5598789877968" />
+                  <mssgle:LineSegment
+                    End="11.7023806634802,-55.6197579755936" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="258.4,41.6"
+          Id="Package\Insert to Accidents in NDS\Change blank into NULL and substring 1"
+          TopLeft="621.428582011437,186.397061437678" />
+        <EdgeLayout
+          Id="Package\Insert to Accidents in NDS.Paths[Derived Column Output1]"
+          TopLeft="723.6,280.758974358975">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="27.0285820114372,-52.7619129212972"
+              Start="0,0"
+              End="27.0285820114372,-45.2619129212972">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-22.3809564606486" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-22.3809564606486"
+                    Point2="0,-26.3809564606486"
+                    Point3="4,-26.3809564606486" />
+                  <mssgle:LineSegment
+                    End="23.0285820114372,-26.3809564606486" />
+                  <mssgle:CubicBezierSegment
+                    Point1="23.0285820114372,-26.3809564606486"
+                    Point2="27.0285820114372,-26.3809564606486"
+                    Point3="27.0285820114372,-30.3809564606486" />
+                  <mssgle:LineSegment
+                    End="27.0285820114372,-45.2619129212972" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14308,19 +15058,135 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Insert to Accidents in NDS.Paths[Sort Output]"
-          TopLeft="283.6,131">
+          Id="Package\Insert to Accidents in NDS.Paths[OLE DB Source Output]"
+          TopLeft="231.92857136775,69.2176468711412">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="105.4,0"
+              EndConnector="0,42.7823531288588"
               Start="0,0"
-              End="97.9000000000002,0">
+              End="0,35.2823531288588">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="97.9000000000002,0" />
+                    End="0,35.2823531288588" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert to Accidents in NDS.Paths[Derived Column Output2]"
+          TopLeft="747.828574347983,186.397061437678">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-31.5617686069961"
+              Start="0,0"
+              End="0,-24.0617686069961">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-24.0617686069961" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert to Accidents in NDS.Paths[Data Conversion Output]"
+          TopLeft="744.784521642773,113.235292830682">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,-33.6067123311179"
+              Start="0,0"
+              End="0,-26.1067123311179">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-26.1067123311179" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Insert to Accidents in NDS\Data Conversion 1"
+          TopLeft="943.750016071967,103.235295565483" />
+        <EdgeLayout
+          Id="Package\Insert to Accidents in NDS.Paths[Derived Column Output3]"
+          TopLeft="1041.23571399681,175.705883050047">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-15.085697924847,-30.8705874845643"
+              Start="0,0"
+              End="-15.085697924847,-23.3705874845643">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-11.4352937422822" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-11.4352937422822"
+                    Point2="0,-15.4352937422822"
+                    Point3="-4,-15.4352937422822" />
+                  <mssgle:LineSegment
+                    End="-11.085697924847,-15.4352937422822" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-11.085697924847,-15.4352937422822"
+                    Point2="-15.085697924847,-15.4352937422822"
+                    Point3="-15.085697924847,-19.4352937422822" />
+                  <mssgle:LineSegment
+                    End="-15.085697924847,-23.3705874845643" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert to Accidents in NDS.Paths[Data Conversion Output1]"
+          TopLeft="1026.15001607197,103.235295565483">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-23.9976355149228,-23.047890035048"
+              Start="0,0"
+              End="-23.9976355149228,-15.547890035048">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,-7.52394501752399" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,-7.52394501752399"
+                    Point2="0,-11.523945017524"
+                    Point3="-4,-11.523945017524" />
+                  <mssgle:LineSegment
+                    End="-19.9976355149228,-11.523945017524" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-19.9976355149228,-11.523945017524"
+                    Point2="-23.9976355149228,-11.523945017524"
+                    Point3="-23.9976355149228,-15.523945017524" />
+                  <mssgle:LineSegment
+                    End="-23.9976355149228,-15.547890035048" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -14332,6 +15198,88 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert to Accidents in NDS\Stage_accidents">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert to Accidents in NDS\Look for District">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert to Accidents in NDS\Look for PostCodes">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert to Accidents in NDS\Look for Accident_Severity">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Insert to Accidents in NDS\Look for Highway">
     <Properties>
@@ -14415,88 +15363,6 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Insert to Accidents in NDS\Look for Accident_Severity">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Insert to Accidents in NDS\Look for Urban Rural">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Insert to Accidents in NDS\Stage_accidents">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Insert to Accidents in NDS\Look for District">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:string">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string"></Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:string">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
     design-time-name="Package\Insert to Accidents in NDS\Look for if the row is exist in Accidents">
     <Properties>
       <Property>
@@ -14520,7 +15386,7 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Insert to Accidents in NDS\Look for PostCodes">
+    design-time-name="Package\Insert to Accidents in NDS\Look for Urban Rural">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -14623,7 +15489,7 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-114.161899539262,-26.9029638236886,96.3827734375,11.609375"
+              BoundingBox="-114.161899539263,-26.9029638236886,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -15104,7 +15970,7 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-145.428566205929,29.8794871794872,96.3827734375,11.609375"
+              BoundingBox="-145.42856620593,29.8794871794872,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -15128,7 +15994,7 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-48.19138671875,12.2606971153846,96.3827734375,11.609375"
+              BoundingBox="-48.19138671875,12.2606971153845,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -15164,7 +16030,7 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="1.92976712740402,27.394954954955,91.7327734375,11.609375"
+              BoundingBox="1.92976712740404,27.394954954955,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -15293,177 +16159,75 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="182.4,41.6"
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd"
-          TopLeft="465,299" />
+          Size="208,41.6"
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (Accident)"
+          TopLeft="693.763491928334,539.479083906766" />
         <NodeLayout
-          Size="106.4,41.6"
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort 1"
-          TopLeft="501,130" />
+          Size="208,41.6"
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension"
+          TopLeft="206.7,513.5" />
         <NodeLayout
           Size="130.4,41.6"
           Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Stage_PCD"
-          TopLeft="183.397435897436,60" />
+          TopLeft="244.706349192834,27.5915035777988" />
         <NodeLayout
-          Size="228,41.6"
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes"
-          TopLeft="434.8,206.910256410257" />
+          Size="164.8,41.6"
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\OLE DB Command"
+          TopLeft="267.188889551163,611.701307141878" />
         <NodeLayout
-          Size="208,41.6"
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (Accident)"
-          TopLeft="454.492307692308,455.333333333334" />
+          Size="126.4,41.6"
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Aggregate"
+          TopLeft="247.5,310.3" />
         <NodeLayout
-          Size="204.8,41.6"
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd8_fix"
-          TopLeft="143,293" />
-        <NodeLayout
-          Size="256.8,41.6"
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in postcodes"
-          TopLeft="112,203.910256410257" />
-        <NodeLayout
-          Size="248,41.6"
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1 1"
-          TopLeft="436.492307692308,376.666666666667" />
+          Size="106.4,41.6"
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort 1"
+          TopLeft="746.150793542668,189.157516065793" />
         <NodeLayout
           Size="97.6,41.6"
           Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Sort"
-          TopLeft="197.525641025641,125.166666666667" />
+          TopLeft="261.9,107.1" />
         <NodeLayout
-          Size="187.2,41.6"
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Postcodes (PCD)"
-          TopLeft="150.692307692308,452.333333333334" />
+          Size="228,41.6"
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes"
+          TopLeft="686.144444349834,274.613724989709" />
+        <NodeLayout
+          Size="248,41.6"
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1 1"
+          TopLeft="675.350793542667,461.669933913626" />
         <NodeLayout
           Size="155.2,41.6"
           Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Stage_Accidents"
-          TopLeft="476.197435897436,57" />
+          TopLeft="713.512698385668,98.8647053461173" />
+        <NodeLayout
+          Size="182.4,41.6"
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Remove duplicate pcd"
+          TopLeft="708.150793542667,366.867319629872" />
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Insert Destination"
+          TopLeft="50.7380960084954,613.400653570939" />
+        <NodeLayout
+          Size="256.8,41.6"
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes"
+          TopLeft="182.3,208.7" />
         <NodeLayout
           Size="248,41.6"
           Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Add update_date and create_date 1"
-          TopLeft="119.692307692308,365.666666666667" />
-        <EdgeLayout
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output3]"
-          TopLeft="558.346153846154,340.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,36.0666666666668"
-              Start="0,0"
-              End="0,28.5666666666668">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,28.5666666666668" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output2]"
-          TopLeft="551.5,171.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,35.3102564102571"
-              Start="0,0"
-              End="0,27.8102564102571">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,27.8102564102571" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output1]"
-          TopLeft="244.546153846154,334.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,31.0666666666669"
-              Start="0,0"
-              End="0,23.5666666666669">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.5666666666669" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output]"
-          TopLeft="243.362820512821,166.766666666667">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,37.14358974359"
-              Start="0,0"
-              End="0,29.64358974359">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,29.64358974359" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[OLE DB Source Output1]"
-          TopLeft="553.998717948718,98.6">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,31.4"
-              Start="0,0"
-              End="0,23.9">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,23.9" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
+          TopLeft="186.7,411.9" />
         <EdgeLayout
           Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[OLE DB Source Output]"
-          TopLeft="247.461538461539,101.6">
+          TopLeft="310.303174596417,69.1915035777988">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,23.566666666667"
+              EndConnector="0,37.9084964222011"
               Start="0,0"
-              End="0,16.066666666667">
+              End="0,30.4084964222011">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,16.066666666667" />
+                    End="0,30.4084964222011" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -15473,67 +16237,103 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Lookup Error Output1]"
-          TopLeft="552.5,248.510256410257">
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[New Output]"
+          TopLeft="277.366666666667,555.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,50.489743589743"
+              EndConnector="-145.428570658171,58.3006535709386"
               Start="0,0"
-              End="0,42.989743589743">
+              End="-145.428570658171,50.8006535709386">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,42.989743589743" />
+                    End="0,19.5872873225935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19.5872873225935"
+                    Point2="0,23.5872873225935"
+                    Point3="-4,23.5872873225935" />
+                  <mssgle:LineSegment
+                    End="-141.428570658171,23.5872873225935" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-141.428570658171,23.5872873225935"
+                    Point2="-145.428570658171,23.5872873225935"
+                    Point3="-145.428570658171,27.5872873225935" />
+                  <mssgle:LineSegment
+                    End="-145.428570658171,50.8006535709386" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-45.86638671875,15.6901842948715,91.7327734375,11.609375"
+              BoundingBox="-99.8056720478355,28.5872873225935,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Lookup Error Output1]"
+          TopLeft="310.7,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-45.86638671875,20.4453125000001,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Lookup Error Output]"
-          TopLeft="242.9,245.510256410257">
+          TopLeft="799.747618946251,316.213724989709">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,47.489743589743"
+              EndConnector="0,50.6535946401622"
               Start="0,0"
-              End="0,39.989743589743">
+              End="0,43.1535946401622">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,39.989743589743" />
+                    End="0,43.1535946401622" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-45.86638671875,14.1901842948715,91.7327734375,11.609375"
+              BoundingBox="-45.86638671875,15.7721098200811,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Derived Column Output1]"
-          TopLeft="559.492307692308,418.266666666667">
+          TopLeft="310.7,453.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,37.0666666666671"
+              EndConnector="0,60.0000000000002"
               Start="0,0"
-              End="0,29.5666666666671">
+              End="0,52.5000000000002">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,29.5666666666671" />
+                    End="0,52.5000000000002" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -15544,18 +16344,164 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Derived Column Output]"
-          TopLeft="243.992307692308,407.266666666667">
+          TopLeft="798.557142735501,503.269933913626">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,45.0666666666669"
+              EndConnector="0,36.2091499931397"
               Start="0,0"
-              End="0,37.5666666666669">
+              End="0,28.7091499931397">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,37.5666666666669" />
+                    End="0,28.7091499931397" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Changing Attribute Updates Output]"
+          TopLeft="346.811111442248,555.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,56.6013071418772"
+              Start="0,0"
+              End="0,49.1013071418772">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.1013071418772" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-78.53390625,18.7191106021886,157.0678125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Aggregate Output 1]"
+          TopLeft="310.7,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output2]"
+          TopLeft="310.7,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output1]"
+          TopLeft="799.350793542667,408.467319629872">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53.2026142837545"
+              Start="0,0"
+              End="0,45.7026142837545">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.7026142837545" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[Sort Output]"
+          TopLeft="799.747618946251,230.757516065793">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.8562089239163"
+              Start="0,0"
+              End="0,36.3562089239163">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.3562089239163" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\insert to Postcodes if dont have pcd (PCD and Accidents table).Paths[OLE DB Source Output1]"
+          TopLeft="791.112698385668,140.464705346117">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.23809515700043,48.6928107196757"
+              Start="0,0"
+              End="8.23809515700043,41.1928107196757">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.3464053598378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.3464053598378"
+                    Point2="0,24.3464053598378"
+                    Point3="4,24.3464053598378" />
+                  <mssgle:LineSegment
+                    End="4.23809515700043,24.3464053598378" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.23809515700043,24.3464053598378"
+                    Point2="8.23809515700043,24.3464053598378"
+                    Point3="8.23809515700043,28.3464053598378" />
+                  <mssgle:LineSegment
+                    End="8.23809515700043,41.1928107196757" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -15568,7 +16514,56 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in postcodes">
+    design-time-name="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Slowly Changing Dimension">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{FA3CC062-92CD-42D9-9399-4059E738F811}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[dbo].[Postcodes]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Add update_date and create_date 1.Outputs[Derived Column Output].Columns[Update date]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;NgayCapNhat&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Add update_date and create_date 1.Outputs[Derived Column Output].Columns[Create date]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;NgayTao&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;ChangingAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Aggregate.Outputs[Aggregate Output 1].Columns[pcd8_fix]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;postcode&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn /&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent /&gt;
+  &lt;ValueExpired /&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd postcode in Postcodes">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -15600,6 +16595,16 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\insert to Postcodes if dont have pcd (PCD and Accidents table)\Look pcd8_pcd postcode in Postcodes">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
@@ -15655,7 +16660,9 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -15677,7 +16684,9 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -15783,7 +16792,9 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -15817,7 +16828,9 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -15972,7 +16985,7 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="32.3957927684288,5,96.3827734375,11.609375"
+              BoundingBox="32.395792768429,5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -15996,7 +17009,7 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-3.34138671874982,5,96.3827734375,11.609375"
+              BoundingBox="-3.3413867187498,5,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -16116,7 +17129,7 @@ where Accident_Index=? AND Vehicle_Reference=?</property>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="1.02976712740478,-26.2398974358974,91.7327734375,11.609375"
+              BoundingBox="1.0297671274048,-26.2398974358974,91.7327734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
