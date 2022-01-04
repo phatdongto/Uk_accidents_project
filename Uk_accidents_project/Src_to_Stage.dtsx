@@ -13,8 +13,8 @@
   DTS:ObjectName="Package"
   DTS:PackageType="5"
   DTS:TransactionOption="0"
-  DTS:VersionBuild="61"
-  DTS:VersionGUID="{6BB7431C-910F-4B07-8A80-92115DC1043C}">
+  DTS:VersionBuild="65"
+  DTS:VersionGUID="{CBE51DC3-611E-45FF-B5AD-BB591C4C5853}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -5517,6 +5517,14 @@
                       cachedName="Copy of pcd"
                       externalMetadataColumnId="Package\accidents\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[pcd]"
                       lineageId="Package\accidents\Data Conversion.Outputs[Data Conversion Output].Columns[Copy of pcd]" />
+                    <inputColumn
+                      refId="Package\accidents\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Local_Authority_(District)]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Local_Authority_(District)"
+                      externalMetadataColumnId="Package\accidents\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[District]"
+                      lineageId="Package\accidents\Flat File Source.Outputs[Flat File Source Output].Columns[Local_Authority_(District)]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -6279,6 +6287,14 @@
                       cachedName="Casualty_Type"
                       externalMetadataColumnId="Package\casualties\Stage_casualties.Inputs[OLE DB Destination Input].ExternalColumns[Casualty_Type]"
                       lineageId="Package\casualties\Src_casualties.Outputs[Flat File Source Output].Columns[Casualty_Type]" />
+                    <inputColumn
+                      refId="Package\casualties\Stage_casualties.Inputs[OLE DB Destination Input].Columns[Age_Band_of_Casualty]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Age_Band_of_Casualty"
+                      externalMetadataColumnId="Package\casualties\Stage_casualties.Inputs[OLE DB Destination Input].ExternalColumns[Age_Band]"
+                      lineageId="Package\casualties\Src_casualties.Outputs[Flat File Source Output].Columns[Age_Band_of_Casualty]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -6318,6 +6334,10 @@
                       refId="Package\casualties\Stage_casualties.Inputs[OLE DB Destination Input].ExternalColumns[Casualty_Type]"
                       dataType="i4"
                       name="Casualty_Type" />
+                    <externalMetadataColumn
+                      refId="Package\casualties\Stage_casualties.Inputs[OLE DB Destination Input].ExternalColumns[Age_Band]"
+                      dataType="i4"
+                      name="Age_Band" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -6361,6 +6381,7 @@
       DTS:refId="Package\LSOA_PCD"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{484F4B40-C245-4EB7-9F48-37107D922402}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -7778,6 +7799,7 @@
       DTS:refId="Package\PCD_PCDfix"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
+      DTS:Disabled="True"
       DTS:DTSID="{9965c29b-7002-48b9-a8e4-4ed3e911e3b4}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
@@ -8729,7 +8751,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate accidents"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="1">
+      DTS:ThreadHint="0">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -8746,7 +8768,7 @@
       DTS:LocaleID="-1"
       DTS:ObjectName="Truncate casualties"
       DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -8768,7 +8790,7 @@
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
           SQLTask:Connection="{2184F707-E112-47D6-9915-CEE2BBC463BA}"
-          SQLTask:SqlStatementSource="truncate table PCD_OA_LSOA_MSOA_LAD_AUG21_UK_LU" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          SQLTask:SqlStatementSource="truncate table LSOA_PCD" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -9768,7 +9790,7 @@
         <NodeLayout
           Size="124,41.6"
           Id="Package\casualties"
-          TopLeft="461.428579286654,201.8823557725" />
+          TopLeft="463.571436466004,207.235297024044" />
         <NodeLayout
           Size="128.8,41.6"
           Id="Package\LSOA_PCD"
@@ -9855,18 +9877,18 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1 1]"
-          TopLeft="524.985721979579,149.423530923949">
+          TopLeft="526.057150569254,149.423530923949">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,52.4588248485513"
+              EndConnector="0,57.8117661000945"
               Start="0,0"
-              End="0,44.9588248485513">
+              End="0,50.3117661000945">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,44.9588248485513" />
+                    End="0,50.3117661000945" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9970,7 +9992,7 @@
     design-time-name="Package\accidents">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="155.2,41.6"
           Id="Package\accidents\Data Conversion"
@@ -9982,41 +10004,39 @@
         <NodeLayout
           Size="150.4,41.6"
           Id="Package\accidents\Flat File Source"
-          TopLeft="217.857146567228,29.0588239369508" />
+          TopLeft="178.571431612482,25.2352944715625" />
         <EdgeLayout
           Id="Package\accidents.Paths[Flat File Source Output]"
-          TopLeft="293.057146567228,70.6588239369508">
+          TopLeft="253.771431612482,66.8352944715625">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-29.0285719637978,54.0588248485516"
+              EndConnector="10.257142990949,57.8823543139395"
               Start="0,0"
-              End="-29.0285719637978,46.5588248485516">
+              End="10.257142990949,50.3823543139395">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,23.0294124242758" />
+                    End="0,24.9411771569697" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,23.0294124242758"
-                    Point2="0,27.0294124242758"
-                    Point3="-4,27.0294124242758" />
+                    Point1="0,24.9411771569697"
+                    Point2="0,28.9411771569697"
+                    Point3="4,28.9411771569697" />
                   <mssgle:LineSegment
-                    End="-25.0285719637978,27.0294124242758" />
+                    End="6.25714299094903,28.9411771569697" />
                   <mssgle:CubicBezierSegment
-                    Point1="-25.0285719637978,27.0294124242758"
-                    Point2="-29.0285719637978,27.0294124242758"
-                    Point3="-29.0285719637978,31.0294124242758" />
+                    Point1="6.25714299094903,28.9411771569697"
+                    Point2="10.257142990949,28.9411771569697"
+                    Point3="10.257142990949,32.9411771569697" />
                   <mssgle:LineSegment
-                    End="-29.0285719637978,46.5588248485516" />
+                    End="10.257142990949,50.3823543139395" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
@@ -10038,9 +10058,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10063,7 +10081,7 @@
     design-time-name="Package\casualties">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="144.8,41.6"
           Id="Package\casualties\Src_casualties"
@@ -10091,9 +10109,7 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10116,7 +10132,7 @@
     design-time-name="Package\LSOA_PCD">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="136,41.6"
           Id="Package\LSOA_PCD\Stage_LSOA"
@@ -10144,7 +10160,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -10171,30 +10189,30 @@
         <NodeLayout
           Size="106.4,41.6"
           Id="Package\Merge join\Sort 1"
-          TopLeft="425,121.666666666667" />
+          TopLeft="447,259.666666666667" />
         <NodeLayout
           Size="115.2,41.6"
           Id="Package\Merge join\PCD_fix"
-          TopLeft="416.833333333333,43.0000000000001" />
+          TopLeft="438.833333333333,181" />
         <NodeLayout
           Size="129.6,41.6"
           Id="Package\Merge join\Merge Join"
-          TopLeft="275,207.5" />
+          TopLeft="297,345.5" />
         <NodeLayout
           Size="128.8,41.6"
           Id="Package\Merge join\LSOA_PCD"
-          TopLeft="280.833333333333,291.666666666667" />
+          TopLeft="302.833333333333,429.666666666667" />
         <NodeLayout
           Size="103.2,41.6"
           Id="Package\Merge join\LSOA"
-          TopLeft="164,37.8333333333334" />
+          TopLeft="186,175.833333333333" />
         <NodeLayout
           Size="97.6,41.6"
           Id="Package\Merge join\Sort"
-          TopLeft="165,122.5" />
+          TopLeft="187,260.5" />
         <EdgeLayout
           Id="Package\Merge join.Paths[Sort Output]"
-          TopLeft="213.8,164.1">
+          TopLeft="235.8,302.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10228,7 +10246,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Merge join.Paths[OLE DB Source Output1]"
-          TopLeft="476.316666666667,84.6000000000002">
+          TopLeft="498.316666666667,222.6">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10250,7 +10268,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Merge join.Paths[OLE DB Source Output]"
-          TopLeft="214.7,79.4333333333334">
+          TopLeft="236.7,217.433333333333">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10272,7 +10290,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Merge join.Paths[Merge Join Output]"
-          TopLeft="342.516666666667,249.1">
+          TopLeft="364.516666666667,387.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10294,7 +10312,7 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Merge join.Paths[Sort Output1]"
-          TopLeft="478.2,163.266666666667">
+          TopLeft="500.2,301.266666666667">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -10466,7 +10484,7 @@
     design-time-name="Package\vehicles">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="136,41.6"
           Id="Package\vehicles\Src_vehicles"
@@ -10494,7 +10512,9 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
